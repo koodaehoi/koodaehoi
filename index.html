@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MOCAFF | VVIP 시음권 확인</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; background: #000; color: #fff; font-family: -apple-system, sans-serif; }
+        .wrapper { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; box-sizing: border-box; min-height: 100vh; text-align: center; }
+        .logo { font-size: 1.5rem; letter-spacing: 8px; color: #d4af37; font-weight: bold; margin-bottom: 40px; }
+        
+        /* 뱃지 및 낙인 효과 */
+        .ticket-container { position: relative; width: 100%; max-width: 350px; margin-bottom: 30px; }
+        .badge-img { width: 100%; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); transition: all 0.5s; }
+        .used-stamp { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 4rem; color: #ff3b30; border: 8px solid #ff3b30; padding: 10px 20px; font-weight: 900; background: rgba(0,0,0,0.7); border-radius: 15px; z-index: 10; letter-spacing: 5px; }
+        
+        .status-msg { font-size: 1.1rem; color: #d4af37; margin-bottom: 10px; font-weight: bold; }
+        .desc { font-size: 0.9rem; color: #888; margin-bottom: 30px; line-height: 1.6; }
+        
+        .burn-btn { background: #d4af37; color: #000; border: none; padding: 16px 40px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; width: 100%; max-width: 300px; }
+        .burn-btn:disabled { background: #333; color: #666; cursor: default; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">MOCAFF</div>
+
+        <div class="ticket-container">
+            <div class="used-stamp" id="used-stamp">USED</div>
+            <img src="nft_badge.jpg" class="badge-img" id="nft-badge">
+        </div>
+
+        <div id="active-area">
+            <div class="status-msg">VVIP 모카프 시음권</div>
+            <p class="desc">현장 스태프에게 이 화면을 보여주세요.<br>스태프 확인 후 시음이 시작됩니다.</p>
+            <button class="burn-btn" id="burn-btn" onclick="verifyStaff()">시음 시작하기 (스태프 확인)</button>
+        </div>
+    </div>
+
+    <script>
+        const burnBtn = document.getElementById('burn-btn');
+        const usedStamp = document.getElementById('used-stamp');
+        const badgeImg = document.getElementById('nft-badge');
+        const adminCode = "0426"; // 지휘관님의 비밀 코드
+
+        // 페이지 로드 시 소각 상태 확인 (브라우저별 유지)
+        window.onload = function() {
+            if (localStorage.getItem('mocaff_burned_koodaehoi') === 'true') {
+                applyBurn();
+            }
+        };
+
+        function verifyStaff() {
+            const input = prompt("관리자 확인 코드를 입력하십시오.");
+            if (input === adminCode) {
+                if(confirm("시음 확인을 완료하시겠습니까?\n완료 후에는 재사용이 불가능합니다.")) {
+                    localStorage.setItem('mocaff_burned_koodaehoi', 'true');
+                    applyBurn();
+                    alert("✅ 확인 완료. 하이엔드 원두를 서빙해 주십시오.");
+                }
+            } else {
+                alert("❌ 코드가 올바르지 않습니다.");
+            }
+        }
+
+        function applyBurn() {
+            usedStamp.style.display = 'block';
+            burnBtn.disabled = true;
+            burnBtn.innerText = "시음 완료된 뱃지";
+            badgeImg.style.filter = "grayscale(100%) brightness(50%)";
+            document.querySelector('.status-msg').innerText = "이미 사용된 시음권입니다.";
+            document.querySelector('.status-msg').style.color = "#ff3b30";
+        }
+    </script>
+</body>
+</html>
