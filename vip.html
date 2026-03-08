@@ -68,59 +68,12 @@
     </div>
 
     <script>
-        const unlockDate = new Date("March 25, 2026 17:00:00").getTime();
+        // ★ [핵심 타격 지점] 테스트를 위해 날짜를 3월 1일(과거)로 당겨두었습니다.
+        const unlockDate = new Date("March 1, 2026 00:00:00").getTime();
         const adminCode = "0426"; 
 
         const lockedScreen = document.getElementById('locked-screen');
         const unlockedScreen = document.getElementById('unlocked-screen');
         const burnBtn = document.getElementById('burn-btn');
         const usedStamp = document.getElementById('used-stamp');
-        const statusMsg = document.getElementById('status-msg');
-
-        window.onload = function() {
-            checkTimeLock();
-            setInterval(checkTimeLock, 1000);
-        };
-
-        function checkTimeLock() {
-            const now = new Date().getTime();
-            
-            if (now >= unlockDate) {
-                lockedScreen.style.display = 'none';
-                unlockedScreen.style.display = 'block';
-                
-                if (localStorage.getItem('koodaehoi_coffee_burned') === 'true') {
-                    showBurnedState();
-                }
-            } else {
-                lockedScreen.style.display = 'block';
-                unlockedScreen.style.display = 'none';
-            }
-        }
-
-        function executeBurn() {
-            const inputCode = prompt("바리스타 확인 코드를 입력해 주십시오.");
-            
-            if (inputCode === adminCode) {
-                if(confirm("확인을 누르시면 시음권이 사용 처리(소각)됩니다.\n커피를 제공하시겠습니까?")) {
-                    localStorage.setItem('koodaehoi_coffee_burned', 'true');
-                    showBurnedState();
-                    alert("✅ 성공적으로 처리되었습니다. 아메리카노를 서빙해 주십시오.");
-                }
-            } else if (inputCode !== null) {
-                alert("❌ 코드가 올바르지 않습니다.");
-            }
-        }
-
-        function showBurnedState() {
-            usedStamp.style.display = 'block';
-            burnBtn.disabled = true;
-            burnBtn.innerText = "사용이 완료된 시음권입니다";
-            burnBtn.style.background = "#333";
-            burnBtn.style.color = "#888";
-            statusMsg.innerText = "이미 시음 혜택을 받으셨습니다. 감사합니다.";
-            statusMsg.style.color = "#ff3b30";
-        }
-    </script>
-</body>
-</html>
+        const statusMsg =
