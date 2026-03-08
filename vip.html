@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>구대회커피 | MOCAFF VVIP 시음권</title>
+    <title>헤링마포 | MOCAFF VVIP 시음권</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; background: #080808; color: #fff; font-family: -apple-system, sans-serif; overflow-x: hidden; }
         .wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; box-sizing: border-box; min-height: 100vh; }
@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="logo">KOODAEHOI COFFEE</div>
+        <div class="logo">HERRING MAPO</div>
         <div class="sub-text">MOCAFF RWA Collaboration</div>
 
         <div id="locked-screen">
@@ -64,14 +64,11 @@
             <button id="burn-btn" class="action-btn" onclick="executeBurn()">☕ 아메리카노 한 잔 시음</button>
         </div>
 
-        <div class="footer">© 2026 구대회커피 & MOCAFF. All rights reserved.</div>
+        <div class="footer">© 2026 헤링마포 & MOCAFF. All rights reserved.</div>
     </div>
 
     <script>
-        // --- [작전 설정값] ---
-        // 타임 락 해제 시간 (2026년 3월 25일 17시 00분 00초)
         const unlockDate = new Date("March 25, 2026 17:00:00").getTime();
-        // 스태프 확인용 암호
         const adminCode = "0426"; 
 
         const lockedScreen = document.getElementById('locked-screen');
@@ -80,10 +77,8 @@
         const usedStamp = document.getElementById('used-stamp');
         const statusMsg = document.getElementById('status-msg');
 
-        // --- [상태 복구 및 시간 체크] ---
         window.onload = function() {
             checkTimeLock();
-            // 1초마다 시간 체크 (기다리던 손님 화면이 17시 정각에 자동 전환됨)
             setInterval(checkTimeLock, 1000);
         };
 
@@ -91,30 +86,23 @@
             const now = new Date().getTime();
             
             if (now >= unlockDate) {
-                // 17시가 지났으면 잠금 해제
                 lockedScreen.style.display = 'none';
                 unlockedScreen.style.display = 'block';
                 
-                // 이미 커피를 마신 사람인지 로컬 저장소 확인
                 if (localStorage.getItem('koodaehoi_coffee_burned') === 'true') {
                     showBurnedState();
                 }
             } else {
-                // 17시 이전이면 잠금 화면 유지
                 lockedScreen.style.display = 'block';
                 unlockedScreen.style.display = 'none';
             }
         }
 
-        // --- [소각 실행 로직 (스태프 확인)] ---
         function executeBurn() {
-            // 1. 손님이 버튼을 누르면 스태프 암호를 요구함
             const inputCode = prompt("바리스타 확인 코드를 입력해 주십시오.");
             
             if (inputCode === adminCode) {
-                // 2. 암호가 맞으면 최종 확인
                 if(confirm("확인을 누르시면 시음권이 사용 처리(소각)됩니다.\n커피를 제공하시겠습니까?")) {
-                    // 사용 기록 저장
                     localStorage.setItem('koodaehoi_coffee_burned', 'true');
                     showBurnedState();
                     alert("✅ 성공적으로 처리되었습니다. 아메리카노를 서빙해 주십시오.");
@@ -124,7 +112,6 @@
             }
         }
 
-        // --- [소각 완료 후 화면 변화] ---
         function showBurnedState() {
             usedStamp.style.display = 'block';
             burnBtn.disabled = true;
