@@ -8,25 +8,20 @@
         body, html { margin: 0; padding: 0; width: 100%; background: #080808; color: #fff; font-family: -apple-system, sans-serif; overflow-x: hidden; }
         .wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; box-sizing: border-box; min-height: 100vh; }
         
-        /* 로고 및 헤더 */
         .logo { font-size: 1.5rem; letter-spacing: 5px; color: #d4af37; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
         .sub-text { font-size: 0.85rem; color: #888; margin-bottom: 40px; }
 
-        /* 잠금 화면 */
         #locked-screen { text-align: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); padding: 40px 20px; border-radius: 15px; width: 100%; max-width: 400px; }
         .lock-icon { font-size: 3rem; margin-bottom: 15px; }
         .lock-title { color: #d4af37; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
         .lock-desc { color: #ccc; font-size: 0.9rem; line-height: 1.5; word-break: keep-all; }
 
-        /* 해제 화면 */
         #unlocked-screen { display: none; width: 100%; max-width: 400px; text-align: center; }
         .nft-container { position: relative; width: 100%; margin-bottom: 25px; }
         .nft-img { width: 100%; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
         
-        /* 도장 */
         .used-stamp { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 3.5rem; color: #ff3b30; border: 6px solid #ff3b30; padding: 10px 20px; font-weight: 900; background: rgba(0,0,0,0.7); border-radius: 15px; z-index: 10; letter-spacing: 3px; }
 
-        /* 버튼 */
         .action-btn { width: 100%; padding: 18px; background: #d4af37; border: none; border-radius: 8px; color: #000; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-bottom: 15px; }
         .action-btn:hover { background: #b8962e; }
         .action-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
@@ -68,8 +63,8 @@
     </div>
 
     <script>
-        // ★ 지휘관님의 구글 DB 주소가 완벽하게 탑재되었습니다! ★
-        const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbxalViIN1g4rfV3QZmAE3mqDnMO2TkrJBL3lj1WWIx7jhL6kp3k7A9MT8NMdPma1Aw/exec";
+        // ★ 지휘관님의 '새로운' 구글 DB 주소가 완벽하게 탑재되었습니다! ★
+        const GOOGLE_APP_URL = "https://script.google.com/macros/s/AKfycbz7dy6S40iyShS-C6_BpS2AnvD3oKG-FfCTUGfqmGAovLnASvZeToGOwxrIWhkevq3J/exec";
         
         // 당장 테스트를 위해 시간 자물쇠를 과거(3월 1일)로 열어두었습니다.
         const unlockDate = new Date("March 1, 2026 00:00:00").getTime();
@@ -77,78 +72,4 @@
 
         const lockedScreen = document.getElementById('locked-screen');
         const unlockedScreen = document.getElementById('unlocked-screen');
-        const burnBtn = document.getElementById('burn-btn');
-        const usedStamp = document.getElementById('used-stamp');
-        const statusMsg = document.getElementById('status-msg');
-
-        window.onload = function() {
-            checkTimeLock();
-            setInterval(checkTimeLock, 1000);
-        };
-
-        function checkTimeLock() {
-            const now = new Date().getTime();
-            if (now >= unlockDate) {
-                lockedScreen.style.display = 'none';
-                unlockedScreen.style.display = 'block';
-                if (localStorage.getItem('koodaehoi_coffee_burned') === 'true') {
-                    showBurnedState();
-                }
-            } else {
-                lockedScreen.style.display = 'block';
-                unlockedScreen.style.display = 'none';
-            }
-        }
-
-        async function executeBurn() {
-            // 1. 바리스타 비밀번호
-            const inputCode = prompt("바리스타 확인 코드를 입력해 주십시오.");
-            if (inputCode !== adminCode) {
-                if(inputCode !== null) alert("❌ 코드가 올바르지 않습니다.");
-                return;
-            }
-
-            // 2. 꼼수 방지용 고객 고유 번호
-            const customerId = prompt("고객 확인 번호 (전화번호 뒷자리 또는 지갑 끝 4자리)를 입력해 주십시오.\n예: 1234");
-            if (!customerId) return;
-
-            if(!confirm("확인을 누르시면 구글 서버에 기록되며 시음권이 사용 처리됩니다.\n커피를 제공하시겠습니까?")) return;
-
-            burnBtn.innerText = "서버 기록 중...";
-            burnBtn.disabled = true;
-
-            try {
-                // 3. 구글 시트로 타격!
-                const response = await fetch(`${GOOGLE_APP_URL}?customerId=${encodeURIComponent(customerId)}`);
-                const result = await response.json();
-
-                if (result.status === "success") {
-                    localStorage.setItem('koodaehoi_coffee_burned', 'true');
-                    showBurnedState();
-                    alert("✅ 정상 승인! 아메리카노를 서빙해 주십시오.");
-                } else if (result.status === "already_claimed") {
-                    alert("🚨 [경고 차단] 이미 커피를 수령한 번호입니다! 꼼수 발견!");
-                    burnBtn.innerText = "☕ 아메리카노 한 잔 시음";
-                    burnBtn.disabled = false;
-                } else {
-                    throw new Error("서버 에러");
-                }
-            } catch (error) {
-                alert("❌ 서버 통신 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-                burnBtn.innerText = "☕ 아메리카노 한 잔 시음";
-                burnBtn.disabled = false;
-            }
-        }
-
-        function showBurnedState() {
-            usedStamp.style.display = 'block';
-            burnBtn.disabled = true;
-            burnBtn.innerText = "사용이 완료된 시음권입니다";
-            burnBtn.style.background = "#333";
-            burnBtn.style.color = "#888";
-            statusMsg.innerText = "이미 시음 혜택을 받으셨습니다. 감사합니다.";
-            statusMsg.style.color = "#ff3b30";
-        }
-    </script>
-</body>
-</html>
+        const burnBtn = document.getElementById
