@@ -8,14 +8,11 @@
         body { background-color: #080808; color: #fff; font-family: -apple-system, sans-serif; text-align: center; margin: 0; padding: 40px 20px; }
         .logo { font-size: 1.5rem; color: #d4af37; font-weight: bold; letter-spacing: 5px; margin-top: 20px; }
         .sub { color: #888; font-size: 0.85rem; margin-bottom: 40px; }
-        .hero-img { width: 100%; max-width: 320px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); margin-bottom: 25px; }
-        
-        /* 🚨 강력한 경고/안내 박스 (디자인 포인트) */
-        .alert-box { border: 1px solid #d4af37; background-color: rgba(212, 175, 55, 0.1); border-radius: 8px; padding: 18px; max-width: 320px; margin: 0 auto 30px auto; color: #fff; font-size: 0.95rem; line-height: 1.6; word-break: keep-all; }
-        .highlight { color: #d4af37; font-weight: bold; font-size: 1.1rem; }
+        .hero-img { width: 100%; max-width: 320px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); margin-bottom: 40px; }
         
         .btn { display: inline-block; width: 100%; max-width: 350px; padding: 20px; background-color: #d4af37; color: #000; font-weight: bold; font-size: 1.2rem; border-radius: 8px; text-decoration: none; margin-bottom: 25px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); }
         .btn:hover { background-color: #b8962e; transform: translateY(-2px); }
+        .guide-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -24,16 +21,15 @@
 
     <img src="https://mocaff.kr/nft_badge.jpg" alt="VVIP NFT" class="hero-img" onerror="this.src='https://via.placeholder.com/300x300/111/d4af37?text=MOCAFF+VVIP'">
 
-    <div class="alert-box">
-        아래 버튼을 눌러 이동하신 후,<br>
-        반드시 화면 우측 상단의<br>
-        <span class="highlight">[Connect]</span> 버튼을 먼저 눌러<br>
-        <strong>전화번호로 로그인</strong>해 주십시오.
-    </div>
-
-    <a href="https://thirdweb.com/polygon/0x0172A6ace69916736e395C750fCCce5305e726ac/nfts/0" class="btn">
-        💎 VVIP NFT Pass 수령 페이지로 이동
+    <a href="https://thirdweb.com/polygon/0x0172A6ace69916736e395C750fCCce5305e726ac" class="btn">
+        💎 VVIP NFT Pass 수령하기
     </a>
+
+    <p class="guide-text">
+        위 버튼을 누르시면 <strong>안전한 공식 수령 페이지</strong>로 이동합니다.<br><br>
+        전화번호(또는 소셜 계정)로 간편 로그인 후<br>
+        수령을 진행해 주십시오.
+    </p>
 
 </body>
 </html>
