@@ -16,21 +16,23 @@
         .logo { font-size: 1.5rem; color: #d4af37; font-weight: bold; letter-spacing: 5px; margin-top: 20px; }
         .sub { color: #888; font-size: 0.85rem; margin-bottom: 50px; }
         
-        /* [기준 폭: 320px] VVIP 배지 이미지 */
+        /* 🎯 [수정 완료] 무조건 줄 바꿈(block)을 하고 가운데 정렬(margin: 0 auto) */
         .hero-img { 
+            display: block; 
             width: 100%; 
             max-width: 320px; 
+            margin: 0 auto 40px auto; 
             border-radius: 15px; 
             border: 2px solid #d4af37; 
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
-            margin-bottom: 40px; 
         }
         
-        /* 버튼 디자인 (뱃지와 동일한 폭 320px, 가운데 정렬) */
+        /* 🎯 [수정 완료] 버튼도 옆에 붙지 못하도록 block 처리 후 가운데 정렬 */
         .btn { 
-            display: inline-block; 
+            display: block; 
             width: 100%; 
             max-width: 320px; 
+            margin: 0 auto 25px auto; 
             padding: 20px; 
             background-color: #d4af37; 
             color: #000; 
@@ -39,7 +41,6 @@
             border-radius: 8px; 
             text-decoration: none; 
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
-            margin-bottom: 25px;
             transition: 0.3s;
             box-sizing: border-box; 
         }
