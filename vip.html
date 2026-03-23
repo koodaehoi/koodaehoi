@@ -9,28 +9,28 @@
             background-color: #080808; 
             color: #fff; 
             font-family: -apple-system, sans-serif; 
-            text-align: center; /* 전체 요소를 가운데 정렬하는 기초 */
+            text-align: center; 
             margin: 0; 
             padding: 40px 20px; 
         }
         .logo { font-size: 1.5rem; color: #d4af37; font-weight: bold; letter-spacing: 5px; margin-top: 20px; }
         .sub { color: #888; font-size: 0.85rem; margin-bottom: 50px; }
         
-        /* 🎯 [기준 폭: 320px] VVIP 배지 이미지 */
+        /* [기준 폭: 320px] VVIP 배지 이미지 */
         .hero-img { 
             width: 100%; 
-            max-width: 320px; /* 버튼의 폭을 이 값에 맞춥니다 ★ */
+            max-width: 320px; 
             border-radius: 15px; 
             border: 2px solid #d4af37; 
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
             margin-bottom: 40px; 
         }
         
-        /* 🎯 [수정된 버튼 디자인] 폭을 뱃지와 동일하게 320px로 조정하고 가운데 정렬 */
+        /* 버튼 디자인 (뱃지와 동일한 폭 320px, 가운데 정렬) */
         .btn { 
-            display: inline-block; /* text-align: center의 영향을 받아 가운데 정렬됨 */
+            display: inline-block; 
             width: 100%; 
-            max-width: 320px; /* 기존 350px에서 뱃지폭(320px)과 동일하게 수정 ★핵심★ */
+            max-width: 320px; 
             padding: 20px; 
             background-color: #d4af37; 
             color: #000; 
@@ -41,17 +41,17 @@
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
             margin-bottom: 25px;
             transition: 0.3s;
-            box-sizing: border-box; /* 패딩이 폭에 포함되도록 설정 */
+            box-sizing: border-box; 
         }
         .btn:hover { background-color: #b8962e; transform: translateY(-2px); }
         
-        /* 가이드 텍스트도 버튼 폭에 맞춰 깔끔하게 정렬 */
+        /* 가이드 텍스트 정렬 */
         .guide-text { 
             color: #ccc; 
             font-size: 0.95rem; 
             line-height: 1.6; 
-            max-width: 320px; /* 버튼과 폭을 맞춤 */
-            margin: 0 auto; /* block 요소 가운데 정렬 */
+            max-width: 320px; 
+            margin: 0 auto; 
             word-break: keep-all; 
         }
     </style>
@@ -68,8 +68,8 @@
 
     <p class="guide-text">
         위 버튼을 누르시면 <strong>안전한 공식 수령 페이지</strong>로 이동합니다.<br><br>
-        전화번호(또는 소셜 계정)로 간편 로그인 후<br>
-        VVIP NFT를 수령해 주십시오.
+        <strong>이메일로 간편 로그인 후<br>
+        VVIP NFT를 받으세요.</strong>
     </p>
 
 </body>
