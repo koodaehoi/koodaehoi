@@ -11,41 +11,54 @@
             font-family: -apple-system, sans-serif; 
             text-align: center; 
             margin: 0; 
-            padding: 20px; 
+            padding: 40px 20px; 
         }
         .logo { font-size: 1.5rem; color: #d4af37; font-weight: bold; letter-spacing: 5px; margin-top: 20px; }
-        .sub { color: #888; font-size: 0.85rem; margin-bottom: 30px; }
+        .sub { color: #888; font-size: 0.85rem; margin-bottom: 50px; }
         
-        /* 써드웹 화면이 들어갈 고급스러운 액자 */
-        .iframe-wrapper { 
+        /* 고급스러운 장식용 VVIP 이미지 */
+        .hero-img { 
             width: 100%; 
-            max-width: 400px; 
-            margin: 0 auto; 
-            height: 600px; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            border: 1px solid rgba(212, 175, 55, 0.3); 
-            background: #111;
+            max-width: 320px; 
+            border-radius: 15px; 
+            border: 2px solid #d4af37; 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
+            margin-bottom: 40px; 
         }
-        iframe { width: 100%; height: 100%; border: none; }
         
-        .guide-text { color: #ccc; font-size: 0.85rem; margin-top: 20px; line-height: 1.5; }
+        /* 써드웹 공식 페이지로 바로 쏴주는 황금 버튼! */
+        .btn { 
+            display: inline-block; 
+            width: 100%; 
+            max-width: 350px; 
+            padding: 20px; 
+            background-color: #d4af37; 
+            color: #000; 
+            font-weight: bold; 
+            font-size: 1.2rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); 
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #b8962e; transform: translateY(-2px); }
+        .guide-text { color: #ccc; font-size: 0.9rem; line-height: 1.5; }
     </style>
 </head>
 <body>
     <div class="logo">HERRING MAPO</div>
     <div class="sub">MOCAFF Collaboration</div>
 
-    <div class="iframe-wrapper">
-        <iframe
-            src="https://embed.thirdweb.com/v1/erc721/137/0x0172A6ace69916736e395C750fCCce5305e726ac?theme=dark&primaryColor=yellow"
-            allow="clipboard-read; clipboard-write"
-        ></iframe>
-    </div>
+    <img src="https://mocaff.kr/nft_badge.jpg" alt="VVIP NFT" class="hero-img" onerror="this.src='https://via.placeholder.com/300x300/111/d4af37?text=MOCAFF+VVIP'">
+
+    <a href="https://thirdweb.com/polygon/0x0172A6ace69916736e395C750fCCce5305e726ac/nfts/0" class="btn">
+        💎 VVIP NFT Pass 수령하기
+    </a>
 
     <p class="guide-text">
-        전화번호로 인증하시고 VVIP 한정판 NFT를 수령해 주십시오.<br>
-        (수령 후 화면을 바리스타에게 보여주시면 됩니다)
+        위 버튼을 누르시면 <strong>안전한 공식 발급 페이지</strong>로 이동합니다.<br><br>
+        전화번호로 인증 후 NFT를 수령해 주십시오.
     </p>
 
 </body>
